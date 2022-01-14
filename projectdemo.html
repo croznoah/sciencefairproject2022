@@ -10,6 +10,9 @@
 <body>
 
 <style>
+    body {
+        background-color: salmon;
+    }
     #object {
         position: relative;
         left: 0px;
@@ -23,17 +26,17 @@
         font-weight: 500;
         width: 500px;
         box-sizing: border-box;
-        border-radius: 10px;
+        border-radius: 20px;
         transition: 0.3s all;
+        overflow: hidden;
     }
     #controller {
-        background-color: hsl(0, 0%, 75%);
+        background-color: hsl(0, 0%, 95%);
         margin-top: 8px;
         width: 100%;
-        padding: 60px;
-        padding-top: 10px;
+        padding: 40px 60px;
         box-sizing: border-box;
-        border-radius: 12px;
+        border-radius: 20px;
     }
     button {
         background-color: dodgerblue;
@@ -46,15 +49,26 @@
         display: block;
         margin: 8px 0px;
         border-radius: 40px;
-        font-weight: 600;
+        font-weight: 700;
         cursor: pointer;
         user-select: none;
     }
-    .header {
-        font-size: 48px;
+    .subheader {
+        font-size: 22px;
+        color: hsl(0, 0%, 40%);
         font-weight: 400;
-        margin: 30px 0px;
+        margin: 10px 2px;
         font-family: lexend deca;
+    }
+    *::-webkit-scrollbar {
+        width: 17px;
+        background-color: hsl(0, 0%, 95%);
+    }
+    *::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        border: 3.8px solid transparent;
+        background-clip: content-box;
+        background-color: rgba(0, 0, 0, 0.7);
     }
 </style>
 
@@ -64,14 +78,21 @@
 </div>
 
 <div id="controller" >
-    <div class="header" >Controller</div>
     <button style="background-color: red;" onclick="reset()">Reset <i class="fa-solid fa-rotate"></i></button>
-    <button onclick="animateleft()">Animate using "Left" <i class="fa-solid fa-angle-right"></i></button>
-    <button onclick="animatemargin()">Animate using "Margin" <i class="fa-solid fa-angle-right"></i></button>
-    <button onclick="animatewidth()">Animate using "Width" <i class="fa-solid fa-angle-right"></i></button>
+    <div class="subheader" >Moving Animations</div> 
+    <button onclick="animateleft()">Animate using <i>"Left"</i> <i class="fa-solid fa-angle-right"></i></button>
+    <button onclick="animatemargin()">Animate using <i>"Margin"</i> <i class="fa-solid fa-angle-right"></i></button>
+    <button onclick="animatewidth()">Animate using <i>"Width"</i> <i class="fa-solid fa-angle-right"></i></button>
+    <button onclick="animatetransform()">Animate using <i>"Transform"</i> <i class="fa-solid fa-angle-right"></i></button>
+    <div class="subheader" >Non-Moving Animations</div> 
+    <button onclick="animatedisplay()">Animate using <i>"Display"</i> <i class="fa-solid fa-angle-right"></i></button>
+    <button onclick="animateopacity()">Animate using <i>"Opacity"</i> <i class="fa-solid fa-angle-right"></i></button>
 </div>
 
 <script>
+    function reset() {
+        document.getElementById("object").attributeStyleMap.clear();
+    }
     function animateleft() {
         document.getElementById("object").style.left = "-510px";
     }
@@ -82,8 +103,14 @@
         document.getElementById("object").style.width = "0px";
         document.getElementById("object").style.padding = "0px";
     }
-    function reset() {
-        document.getElementById("object").attributeStyleMap.clear();
+    function animatetransform() {
+        document.getElementById("object").style.transform = "translateX(-510px)";
+    }
+    function animatedisplay() {
+        document.getElementById("object").style.display = "none";
+    }
+    function animateopacity() {
+        document.getElementById("object").style.opacity = "0";
     }
 </script>
     
